@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  homelab-notifier:
+    image: homelab-notifier
+    container_name: homelab-notifier
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - BOT_TOKEN
+      - BOT_CHAT_ID
+    ports:
+      - "9800:5000"
+    restart: unless-stopped
+    networks:
+      - my-home-net
+
+networks:
+  my-home-net:
+    external: true
